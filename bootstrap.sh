@@ -25,7 +25,7 @@ function setup_home_dir {
 }
 
 # parameter parsing
-if [ $# le 2 ]; then 
+if [ $# -le 2 ]; then 
   show_usage
   exit 1
 fi
