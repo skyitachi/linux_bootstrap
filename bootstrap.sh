@@ -2,7 +2,7 @@
 currentUsr=`whoami`
 currentDir=`pwd`
 shell="/bin/bash"
-# parameter parsing
+
 function show_usage {
   echo "must run with super-user privileges."
   echo -e "\nUsage: bootstrap.sh [-h] [-u user_name]"
@@ -23,6 +23,12 @@ function setup_home_dir {
     fi
   done
 }
+
+# parameter parsing
+if [ $# le 2 ]; then 
+  show_usage
+  exit 1
+fi
 
 while [ "$#" -gt 0 ]; do
   case "$1" in
