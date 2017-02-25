@@ -1,5 +1,6 @@
 ### linux_bootstrap
 
 #### TODO
-- 支持添加sudo
-- 程序正确性验证
+
+- [x] 程序正确性验证
+- [ ] 支持添加sudo
