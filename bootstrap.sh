@@ -16,16 +16,16 @@ function addUserPrompt {
 function setup_home_dir {
   homeDirs=(bin utility lab personal resource)
   for i in "${homeDirs[@]}"; do
-    if [ -d "$currentDir/${i}" ]; then
+    if [ -d "$homeDir/${i}" ]; then
       continue
     else
-      mkdir $currentDir/${i}
+      mkdir $homeDir/${i}
     fi
   done
 }
 
 # parameter parsing
-if [ $# -le 2 ]; then 
+if [ $# -lt 1 ]; then 
   show_usage
   exit 1
 fi
@@ -44,7 +44,6 @@ while [ "$#" -gt 0 ]; do
       fi
       #use adduser not useradd to add user
       homeDir=/home/$1
-      addUserPrompt
       adduser $1 --home $homeDir --shell $shell
       setup_home_dir
       shift
