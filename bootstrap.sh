@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-currentUsr=`whoami`
 currentDir=`pwd`
 shell="/bin/bash"
+user=`whoami`
 
 function show_usage {
   echo "must run with super-user privileges."
@@ -24,8 +24,12 @@ function setup_home_dir {
   done
 }
 
+function setup_sudoers {
+    echo "$user ALL=(ALL:ALL) ALL" >> /etc/sudoers
+}
+
 # parameter parsing
-if [ $# -lt 1 ]; then 
+if [ $# -lt 1 ]; then
   show_usage
   exit 1
 fi
@@ -43,9 +47,11 @@ while [ "$#" -gt 0 ]; do
         exit 1
       fi
       #use adduser not useradd to add user
+      user=$1
       homeDir=/home/$1
       adduser $1 --home $homeDir --shell $shell
       setup_home_dir
+      setup_sudoers
       shift
       ;;
   esac
