@@ -22,6 +22,8 @@ function setup_home_dir {
       mkdir $homeDir/${i}
     fi
   done
+  # directory privilege
+  chown -R $user:$user $homeDir
 }
 
 function setup_sudoers {
